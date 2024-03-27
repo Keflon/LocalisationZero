@@ -9,9 +9,11 @@ namespace LocalisationZeroTestbed.Mvvm.PageViewModels
     public class HomePageVm : BasePageVm
     {
         public int Count { get; }
+        public int OtherCount { get; }
         public HomePageVm()
         {
             Count = 4;
+            OtherCount = 6;
         }
 
         internal void Init(string friendlyMessage)

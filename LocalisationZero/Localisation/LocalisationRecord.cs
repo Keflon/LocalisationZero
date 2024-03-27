@@ -25,9 +25,13 @@ namespace LocalisationZero.Localisation
             //if (arguments.Length != _backingStore.Count)
             //    throw new InvalidOperationException($"Argument count mismatch. {arguments.Length} arguments, expected {_backingStore.Count}");
 
-            int c = arguments.Count-1;
+            //int c = arguments.Count-1;
+            //foreach (var key in _backingStore.Keys)
+            //    _backingStore[key] = arguments[c--];
+
+            int c = 0;
             foreach (var key in _backingStore.Keys)
-                _backingStore[key] = arguments[c--];
+                _backingStore[key] = arguments[c++];
 
             foreach (var item in Items)
             {
@@ -63,13 +67,13 @@ namespace LocalisationZero.Localisation
             {
                 return ex.Message;
             }
-            //return localisedText;          // TODO: Substitutions. E.g. "The height is {GetLocalLength(heightInMetres * 100)}"
         }
 
         public (OperandType type, object value) GetValue(string qualifiedName)
         {
-            if (qualifiedName.Contains("."))
-                throw new InvalidOperationException("Dotted notation is not valid in LocationRecord");
+            // Actually, it ought to just work.
+            //if (qualifiedName.Contains("."))
+            //    throw new InvalidOperationException("Dotted notation is not valid in LocationRecord");
 
             var value = _backingStore[qualifiedName];
 
