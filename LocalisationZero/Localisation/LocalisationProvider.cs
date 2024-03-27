@@ -1,19 +1,19 @@
 ﻿namespace LocalisationZero.Localisation
 {
-    public class LanguageProvider
+    public class LocalisationProvider
     {
-        public LanguageProvider(Func<LocalisationPack> getLookup, string languageName)
+        public LocalisationProvider(Func<LocalisationPack> getLookup, string languageName)
         {
             GetLookup = getLookup;
             LanguageName = languageName;
         }
-        //public LanguageProvider(Func<IEnumerable<string>> getLookup, string languageName)
+        //public LocalisationProvider(Func<LocalisationPack> getLookup, string languageName)
         //{
         //    GetLookup = GetLookupFromStringList(getLookup);
         //    LanguageName = languageName;
         //}
 
-        //private Func<LocalisationPack> GetLookupFromStringList(Func<IEnumerable<string>> getLookup)
+        //private Func<LocalisationPack> GetLookupFromStringList(Func<LocalisationPack> getLookup)
         //{
         //    throw new NotImplementedException();
         //}

@@ -32,14 +32,14 @@ namespace LocalisationZero.MarkupExtensions
         private static void ArgumentsChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var self = (BaseLanguageExtension<TEnum>)bindable;
-            if (self._target != null)
-                UpdateText(self, GetLookup(self._target));
+            if (self.Target != null)
+                UpdateText(self, GetLookup(self.Target));
         }
 
         #endregion
 
         private string _text;
-        private Element _target;
+        public Element Target { get; set; }
 
         public string Text
         {
@@ -70,7 +70,10 @@ namespace LocalisationZero.MarkupExtensions
             SetLangHost(target, this);
             target.SetDynamicResource(LookupProperty, _dynamicResourceName);
 
-            _target = target;
+            Target = target;
+            Target.BindingContextChanged += 
+                (s, e)=>this.BindingContext = Target.BindingContext;
+            //this.SetBinding(BindingContextProperty, "Target.BindingContext");
 
             var b = new Binding("Text", mode: BindingMode.OneWay, source: this);
 

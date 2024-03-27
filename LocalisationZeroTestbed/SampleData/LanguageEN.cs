@@ -33,7 +33,7 @@ namespace LocalisationZeroTestbed.SampleData
 
             bananaItems.Add(new LocalisationItem("Count == 0", "There are no bananas"));
             bananaItems.Add(new LocalisationItem("Count == 1", "There is one banana"));
-            bananaItems.Add(new LocalisationItem("Count <= 5", "There are {Count}} bananas"));
+            bananaItems.Add(new LocalisationItem("Count <= 5", "There are {Count} bananas, half of {Count*2}"));
             bananaItems.Add(new LocalisationItem("True      ", "There are loads of bananas"));
 
             var bananaLocalisationRecord = new LocalisationRecord(bananaItems, "Count");

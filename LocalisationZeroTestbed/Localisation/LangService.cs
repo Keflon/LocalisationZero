@@ -4,7 +4,7 @@ using LocalisationZero.Localisation;
 
 namespace SampleApp.Translations
 {
-    public class LangService : BaseLanguageService<LangStrings>
+    public class LangService : BaseLocalisationService<LangStrings>
     {
     }
 }

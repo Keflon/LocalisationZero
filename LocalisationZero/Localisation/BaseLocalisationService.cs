@@ -5,12 +5,12 @@ namespace LocalisationZero.Localisation
     /// <summary>
     /// Goal. To be decoupled enough to allow downloading and selection of new or updated language packs on the fly.
     /// </summary>
-    public abstract partial class BaseLanguageService<TEnum> : INotifyPropertyChanged where TEnum : Enum
+    public abstract partial class BaseLocalisationService<TEnum> : INotifyPropertyChanged where TEnum : Enum
     {
         private readonly string _resourceKey;
         private ResourceDictionary _resourceHost;
-        private Dictionary<string, LanguageProvider> _languages;
-        public event EventHandler<LanguageChangedEventArgs> LanguageChanged;
+        private Dictionary<string, LocalisationProvider> _languages;
+        public event EventHandler<LocalisatiobChangedEventArgs> LanguageChanged;
 
         // INPC raised by SetLanguage(..)
         public string CurrentLanguageId { get; protected set; }
@@ -19,7 +19,7 @@ namespace LocalisationZero.Localisation
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-        public BaseLanguageService(string resourceKey = "languageResource")
+        public BaseLocalisationService(string resourceKey = "languageResource")
         {
             _resourceKey = resourceKey;
             _languages = new();
@@ -31,7 +31,7 @@ namespace LocalisationZero.Localisation
             SetLanguage(initialLanguage);
         }
 
-        public void RegisterLanguage(string id, LanguageProvider language)
+        public void RegisterLanguage(string id, LocalisationProvider language)
         {
             _languages[id] = language;
         }
@@ -54,7 +54,7 @@ namespace LocalisationZero.Localisation
 
             CurrentLanguageId = id;
 
-            LanguageChanged?.Invoke(this, new LanguageChangedEventArgs(id));
+            LanguageChanged?.Invoke(this, new LocalisatiobChangedEventArgs(id));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLanguageId)));
         }
 

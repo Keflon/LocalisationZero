@@ -40,7 +40,7 @@ namespace LocalisationZeroTestbed
         private static LangService GetConfiguredLanguageService(IServiceProvider provider)
         {
             var translationService = new LangService();
-            translationService.RegisterLanguage("english", new LanguageProvider(GetEnglish, "English"));
+            translationService.RegisterLanguage("english", new LocalisationProvider(GetEnglish, "English"));
 
             return translationService;
         }

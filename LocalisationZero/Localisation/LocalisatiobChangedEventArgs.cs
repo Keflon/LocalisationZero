@@ -1,8 +1,8 @@
 ﻿namespace LocalisationZero.Localisation
 {
-    public class LanguageChangedEventArgs : EventArgs
+    public class LocalisatiobChangedEventArgs : EventArgs
     {
-        public LanguageChangedEventArgs(string languageId)
+        public LocalisatiobChangedEventArgs(string languageId)
         {
             LanguageId = languageId;
         }

@@ -1,6 +1,7 @@
 ﻿using FunctionZero.ExpressionParserZero.BackingStore;
 using FunctionZero.ExpressionParserZero.Binding;
 using FunctionZero.ExpressionParserZero.Operands;
+using LocalisationZero.Interpolation;
 
 namespace LocalisationZero.Localisation
 {
@@ -52,7 +53,17 @@ namespace LocalisationZero.Localisation
 
         private string PerformSubstitutions(string localisedText, IList<object> arguments)
         {
-            return localisedText;          // TODO: Substitutions. E.g. "The height is {GetLocalLength(heightInMetres * 100)}"
+            try
+            {
+                var interpolator = new StringInterpolator(localisedText, this, ExpressionParserFactory.GetExpressionParser());
+
+                return interpolator.Result;
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
+            //return localisedText;          // TODO: Substitutions. E.g. "The height is {GetLocalLength(heightInMetres * 100)}"
         }
 
         public (OperandType type, object value) GetValue(string qualifiedName)
@@ -137,8 +148,9 @@ namespace LocalisationZero.Localisation
 
         public void SetValue(string qualifiedName, object value)
         {
-            if (qualifiedName.Contains("."))
-                throw new InvalidOperationException("Dotted notation is not valid in LocationRecord");
+            // Actually, it ought to just work.
+            //if (qualifiedName.Contains("."))
+            //    throw new InvalidOperationException("Dotted notation is not valid in LocationRecord");
 
             _backingStore[qualifiedName] = value;
         }
