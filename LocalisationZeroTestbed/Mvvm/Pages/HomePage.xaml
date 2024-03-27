@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tz="clr-namespace:LocalisationZeroTestbed.Localisation"
+             xmlns:z="clr-namespace:FunctionZero.Maui.zBind.z;assembly=FunctionZero.Maui.zBind"
+             x:Class="LocalisationZeroTestbed.Mvvm.Pages.HomePage"
+             Title="HomePage">
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to .NET MAUIz!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Slider x:Name="theSlider" Minimum="0" Maximum="10" Value="6"/>
+        <Label Text="{tz:Lang TextId=E_Bananas, Arguments={z:MultiBind (Int)Value, Source={x:Reference theSlider}}}"/>
+        <!--<Label Text="{tz:Lang TextId=E_Bananas, Arguments={z:MultiBind '4, 5, 6'}}"/>-->
+        <Label Text="{z:MultiBind (Int)Value, Source={x:Reference theSlider}}"/>
+    </VerticalStackLayout>
+</ContentPage>
