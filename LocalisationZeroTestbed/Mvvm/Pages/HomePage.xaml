@@ -17,8 +17,11 @@
         <Label Text="{tz:Lang TextId=E_Bananas, Arguments={z:MultiBind '(Int)Value, Value', Source={x:Reference theSlider}}}"/>
 
         <Label Text="{tz:Lang TextId=E_Bananas, Arguments={z:MultiBind 'Count, OtherCount'}}"/>
+        
+        
         <Label Text="{tz:Lang TextId=E_Bananas, Arguments={z:MultiBind '3, 2'}}"/>
 
+        <Label Text="{Binding TestString}"/>
 
         <!--<Label Text="{tz:Lang TextId=E_Bananas, Arguments={z:MultiBind '4, 5, 6'}}"/>-->
         <!--<Label Text="{z:MultiBind (Int)Value, Source={x:Reference theSlider}}"/>-->

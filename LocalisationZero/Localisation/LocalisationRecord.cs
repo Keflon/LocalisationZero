@@ -20,14 +20,10 @@ namespace LocalisationZero.Localisation
 
         public IEnumerable<LocalisationItem> Items { get; }
 
-        public string GetText(List<object> arguments)
+        public string GetText(object[] arguments)
         {
             //if (arguments.Length != _backingStore.Count)
             //    throw new InvalidOperationException($"Argument count mismatch. {arguments.Length} arguments, expected {_backingStore.Count}");
-
-            //int c = arguments.Count-1;
-            //foreach (var key in _backingStore.Keys)
-            //    _backingStore[key] = arguments[c--];
 
             int c = 0;
             foreach (var key in _backingStore.Keys)
@@ -49,13 +45,13 @@ namespace LocalisationZero.Localisation
                     throw new InvalidOperationException($"Expression {item.ConditionExpression} does not resolve to a bool");
 
                 if ((bool)operand.GetValue() == true)
-                    return PerformSubstitutions(item.LocalisedText, arguments);
+                    return PerformSubstitutions(item.LocalisedText);
 
             }
             return "Missing translation";
         }
 
-        private string PerformSubstitutions(string localisedText, IList<object> arguments)
+        private string PerformSubstitutions(string localisedText)
         {
             try
             {

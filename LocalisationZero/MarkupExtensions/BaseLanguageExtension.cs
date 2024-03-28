@@ -111,14 +111,14 @@ namespace LocalisationZero.MarkupExtensions
 
         private static void UpdateText(BaseLanguageExtension<TEnum> langHost, LocalisationPack lookup)
         {
-
             if (lookup != null)
             {
+                // langHost.Arguments are reversed because they originate from an evaluated expression.
                 var arguments = new List<object>();
                 foreach (var item in langHost.Arguments)
                     arguments.Insert(0, item);
 
-                var text = lookup.GetString((int)(object)langHost.TextId, arguments);
+                var text = lookup.GetString((int)(object)langHost.TextId, arguments.ToArray());
                 langHost.Text = text;
             }
         }

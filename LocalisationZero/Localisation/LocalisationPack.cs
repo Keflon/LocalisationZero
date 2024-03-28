@@ -17,7 +17,7 @@ namespace LocalisationZero.Localisation
         public IList<LocalisationRecord> LocalisationRecords { get; }
         public int RecordCount => LocalisationRecords.Count;
 
-        public string GetString(int index, List<object> arguments)
+        public string GetString(int index, object[] arguments)
         {
             var record = LocalisationRecords[index];
 

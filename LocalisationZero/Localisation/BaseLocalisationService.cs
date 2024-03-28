@@ -10,7 +10,7 @@ namespace LocalisationZero.Localisation
         private readonly string _resourceKey;
         private ResourceDictionary _resourceHost;
         private Dictionary<string, LocalisationProvider> _languages;
-        public event EventHandler<LocalisatiobChangedEventArgs> LanguageChanged;
+        public event EventHandler<LocalisationChangedEventArgs> LanguageChanged;
 
         // INPC raised by SetLanguage(..)
         public string CurrentLanguageId { get; protected set; }
@@ -54,7 +54,7 @@ namespace LocalisationZero.Localisation
 
             CurrentLanguageId = id;
 
-            LanguageChanged?.Invoke(this, new LocalisatiobChangedEventArgs(id));
+            LanguageChanged?.Invoke(this, new LocalisationChangedEventArgs(id));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLanguageId)));
         }
 
@@ -63,21 +63,11 @@ namespace LocalisationZero.Localisation
 
         public string GetText(TEnum textId, params object[]arguments)
         {
-            throw new NotImplementedException();
+            if (_resourceHost == null)
+                throw new InvalidOperationException("You must call Init on the LanguageService before you call SetLanguage(string id), e.g. Init(Application.Current.Resources);");
+
+            LocalisationProvider currentLanguage = _languages[CurrentLanguageId];
+            return currentLanguage.GetLookup().GetString((int)(object)textId, arguments);
         }
-
-        //public string GetText(TEnum textId, IBackingStore host)
-        //{
-        //    List<(ExpressionTree, string)> lookup = _languages[CurrentLanguageId].GetLookup()[(int)(object)textId];
-
-        //    foreach (var item in lookup)
-        //    {
-        //        var result = item.Item1.Evaluate(host).Pop();
-        //        if (result.Type == FunctionZero.ExpressionParserZero.Operands.OperandType.Bool)
-        //            if ((bool)result.GetValue() == true)
-        //                return item.Item2;
-        //    }
-        //    return $"textId {textId} not found.";
-        //}
     }
 }

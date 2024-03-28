@@ -10,20 +10,24 @@ namespace LocalisationZeroTestbed.Mvvm.PageViewModels
     public class HomePageVm : BasePageVm
     {
         private int _count;
+        private readonly LangService _lang;
+
         public int Count { get => _count; set => SetProperty(ref _count, value); }
         public int OtherCount { get; }
 
         //private string _testString;
-        public LangString TestString { get; }
+        private string _testString;
+        public string TestString { get => _testString; set => SetProperty(ref _testString, value); }
 
-        public HomePageVm(Localisation loc)
+        public HomePageVm(LangService lang)
         {
+            _lang = lang;
+
             Count = 4;
             OtherCount = 6;
+            TestString = _lang.GetText(LangStrings.E_Bananas, 3, 9);
 
             AddPageTimer(1000, MyTimerCallback, null, null);
-
-            // LangString = loc.Create(E_Bananas, args somehow.
         }
 
         private void MyTimerCallback(object obj)
