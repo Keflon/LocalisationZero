@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SampleApp.Translations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,12 +12,18 @@ namespace LocalisationZeroTestbed.Mvvm.PageViewModels
         private int _count;
         public int Count { get => _count; set => SetProperty(ref _count, value); }
         public int OtherCount { get; }
-        public HomePageVm()
+
+        //private string _testString;
+        public LangString TestString { get; }
+
+        public HomePageVm(Localisation loc)
         {
             Count = 4;
             OtherCount = 6;
 
             AddPageTimer(1000, MyTimerCallback, null, null);
+
+            // LangString = loc.Create(E_Bananas, args somehow.
         }
 
         private void MyTimerCallback(object obj)
