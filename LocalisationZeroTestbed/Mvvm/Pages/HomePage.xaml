@@ -8,7 +8,7 @@
              x:Name="Self">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUIz!"
+            Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
@@ -17,9 +17,10 @@
         <Label Text="{tz:Lang TextId=E_Bananas, Arguments={z:MultiBind '(Int)Value, Value', Source={x:Reference theSlider}}}"/>
 
         <Label Text="{tz:Lang TextId=E_Bananas, Arguments={z:MultiBind 'Count, OtherCount'}}"/>
-        
-        
+
+
         <Label Text="{tz:Lang TextId=E_Bananas, Arguments={z:MultiBind '3, 2'}}"/>
+        <Label Text="{tz:Lang TextId=E_Hello}"/>
 
         <Label Text="{Binding TestString}"/>
 

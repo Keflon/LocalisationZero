@@ -13,21 +13,28 @@
             LanguageName = languageName;
         }
 
+
         private LocalisationPack GetLocalisationPackFromStringList(Func<IEnumerable<string>> getLookup)
         {
             // LocalisationPack
-            //    LocalisationRecord
-            //        LocalisationItem
+            //    LocalisationRecord      each translation
+            //        LocalisationItem    each translation option
 
-            var localisationItemList = new List<LocalisationItem>();
+            List<LocalisationRecord> recordList = new List<LocalisationRecord>();// { new LocalisationRecord(localisationItemList) };
 
             foreach (var localString in getLookup())
-                localisationItemList.Add(new LocalisationItem("True", localString));
+            {
+                var localisationItemList = new List<LocalisationItem>();
 
-            var recordList = new List<LocalisationRecord> { new LocalisationRecord(localisationItemList) };
+                localisationItemList.Add(new LocalisationItem("True", localString));
+                recordList.Add (new LocalisationRecord(localisationItemList));
+            }
 
             return new LocalisationPack(recordList);
         }
+
+
+
 
         public Func<LocalisationPack> GetLookup { get; }
         public string LanguageName { get; }

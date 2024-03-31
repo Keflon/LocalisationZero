@@ -1,6 +1,7 @@
 ﻿using FunctionZero.Maui.MvvmZero;
 using LocalisationZero.Localisation;
 using LocalisationZeroTestbed.Localisation;
+using LocalisationZeroTestbed.Mvvm.Pages;
 using LocalisationZeroTestbed.Mvvm.PageViewModels;
 
 namespace LocalisationZeroTestbed
@@ -14,8 +15,10 @@ namespace LocalisationZeroTestbed
             pageService.Init(this);
             langService.Init(this.Resources, "english");
 
-            MainPage = navPage;
-            pageService.PushVmAsync<HomePageVm>(vm => vm.Init("Hello"));
+            MainPage = pageService.GetMvvmPage<HomePage, HomePageVm>().page;
+
+            //MainPage = navPage;
+            //pageService.PushVmAsync<HomePageVm>(vm => vm.Init("Hello"));
         }
 #if WINDOWS
         protected override Window CreateWindow(IActivationState activationState)
