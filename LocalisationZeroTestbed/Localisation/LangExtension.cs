@@ -1,5 +1,4 @@
 ﻿using LocalisationZero.MarkupExtensions;
-using SampleApp.Translations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocalisationZeroTestbed.Localisation
 {
-    public class LangExtension : BaseLanguageExtension<LangStrings>
+    public class LangExtension : BaseLocalisationExtension<LocalisationStrings>
     {
         public LangExtension() : base("languageResource")
         {

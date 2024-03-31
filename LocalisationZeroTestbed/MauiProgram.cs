@@ -1,10 +1,10 @@
 ﻿using FunctionZero.Maui.MvvmZero;
 using LocalisationZero.Localisation;
+using LocalisationZeroTestbed.Localisation;
 using LocalisationZeroTestbed.Mvvm.Pages;
 using LocalisationZeroTestbed.Mvvm.PageViewModels;
 using LocalisationZeroTestbed.SampleData;
 using Microsoft.Extensions.Logging;
-using SampleApp.Translations;
 
 namespace LocalisationZeroTestbed
 {
@@ -32,17 +32,17 @@ namespace LocalisationZeroTestbed
             builder.Services
                 .AddSingleton<HomePage>()
                 .AddSingleton<HomePageVm>()
-                .AddSingleton<LangService>(GetConfiguredLanguageService)
+                .AddSingleton<LocalisationService>(GetConfiguredLanguageService)
                 ;
             return builder.Build();
         }
 
-        private static LangService GetConfiguredLanguageService(IServiceProvider provider)
+        private static LocalisationService GetConfiguredLanguageService(IServiceProvider provider)
         {
-            var translationService = new LangService();
-            translationService.RegisterLanguage("english", new LocalisationProvider(GetEnglish, "English"));
+            var localisationService = new LocalisationService();
+            localisationService.RegisterLanguage("english", new LocalisationProvider(GetEnglish, "English"));
 
-            return translationService;
+            return localisationService;
         }
 
         private static LocalisationPack GetEnglish()

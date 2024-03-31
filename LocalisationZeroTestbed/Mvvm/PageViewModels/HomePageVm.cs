@@ -1,4 +1,4 @@
-﻿using SampleApp.Translations;
+﻿using LocalisationZeroTestbed.Localisation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace LocalisationZeroTestbed.Mvvm.PageViewModels
     public class HomePageVm : BasePageVm
     {
         private int _count;
-        private readonly LangService _lang;
+        private readonly LocalisationService _lang;
 
         public int Count { get => _count; set => SetProperty(ref _count, value); }
         public int OtherCount { get; }
@@ -19,13 +19,13 @@ namespace LocalisationZeroTestbed.Mvvm.PageViewModels
         private string _testString;
         public string TestString { get => _testString; set => SetProperty(ref _testString, value); }
 
-        public HomePageVm(LangService lang)
+        public HomePageVm(LocalisationService lang)
         {
             _lang = lang;
 
             Count = 4;
             OtherCount = 6;
-            TestString = _lang.GetText(LangStrings.E_Bananas, 3, 9);
+            TestString = _lang.GetText(LocalisationStrings.E_Bananas, 3, 9);
 
             AddPageTimer(1000, MyTimerCallback, null, null);
         }

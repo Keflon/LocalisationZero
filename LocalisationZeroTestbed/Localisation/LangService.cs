@@ -2,9 +2,9 @@
 using LocalisationZero.Localisation;
 
 
-namespace SampleApp.Translations
+namespace LocalisationZeroTestbed.Localisation
 {
-    public class LangService : BaseLocalisationService<LangStrings>
+    public class LocalisationService : BaseLocalisationService<LocalisationStrings>
     {
     }
 }

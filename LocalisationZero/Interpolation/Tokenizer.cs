@@ -2,8 +2,6 @@
 
 namespace LocalisationZero.Interpolation
 {
-
-
     internal class Tokenizer
     {
         enum Chartype
@@ -117,7 +115,6 @@ namespace LocalisationZero.Interpolation
                     _cursor++;
 
             return retval;
-
         }
 
         private (Chartype type, char character) PeekNextChar()

@@ -1,13 +1,13 @@
 ﻿using FunctionZero.Maui.MvvmZero;
 using LocalisationZero.Localisation;
+using LocalisationZeroTestbed.Localisation;
 using LocalisationZeroTestbed.Mvvm.PageViewModels;
-using SampleApp.Translations;
 
 namespace LocalisationZeroTestbed
 {
     public partial class App : Application
     {
-        public App(NavigationPage navPage, IPageServiceZero pageService, LangService langService)
+        public App(NavigationPage navPage, IPageServiceZero pageService, LocalisationService langService)
         {
             InitializeComponent();
 

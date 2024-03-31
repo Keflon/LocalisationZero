@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace LocalisationZero.MarkupExtensions
 {
-    public abstract class BaseLanguageExtension<TEnum> : BindableObject, IMarkupExtension<Binding>, INotifyPropertyChanged where TEnum : Enum
+    public abstract class BaseLocalisationExtension<TEnum> : BindableObject, IMarkupExtension<Binding>, INotifyPropertyChanged where TEnum : Enum
     {
         private readonly string _dynamicResourceName;
 
-        public BaseLanguageExtension(string dynamicResourceName)
+        public BaseLocalisationExtension(string dynamicResourceName)
         {
             _dynamicResourceName = dynamicResourceName;
         }
@@ -20,7 +20,7 @@ namespace LocalisationZero.MarkupExtensions
         #region ArgumentsProperty
 
 
-        public static readonly BindableProperty ArgumentsProperty = BindableProperty.Create(nameof(Arguments), typeof(List<object>), typeof(BaseLanguageExtension<TEnum>), new List<object>(), BindingMode.OneWay, null, ArgumentsChanged);
+        public static readonly BindableProperty ArgumentsProperty = BindableProperty.Create(nameof(Arguments), typeof(List<object>), typeof(BaseLocalisationExtension<TEnum>), new List<object>(), BindingMode.OneWay, null, ArgumentsChanged);
 
         //[TypeConverter(typeof(ExpressionTreeTypeConverter))]
         public List<object> Arguments
@@ -31,7 +31,7 @@ namespace LocalisationZero.MarkupExtensions
 
         private static void ArgumentsChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var self = (BaseLanguageExtension<TEnum>)bindable;
+            var self = (BaseLocalisationExtension<TEnum>)bindable;
             if (self.Target != null)
                 UpdateText(self, GetLookup(self.Target));
         }
@@ -86,14 +86,14 @@ namespace LocalisationZero.MarkupExtensions
         }
 
         public static readonly BindableProperty LangHostProperty =
-    BindableProperty.CreateAttached("LangHost", typeof(BaseLanguageExtension<TEnum>), typeof(Element), null);
+    BindableProperty.CreateAttached("LangHost", typeof(BaseLocalisationExtension<TEnum>), typeof(Element), null);
 
-        public static BaseLanguageExtension<TEnum> GetLangHost(BindableObject view)
+        public static BaseLocalisationExtension<TEnum> GetLangHost(BindableObject view)
         {
-            return (BaseLanguageExtension<TEnum>)view.GetValue(LangHostProperty);
+            return (BaseLocalisationExtension<TEnum>)view.GetValue(LangHostProperty);
         }
 
-        public static void SetLangHost(BindableObject view, BaseLanguageExtension<TEnum> value)
+        public static void SetLangHost(BindableObject view, BaseLocalisationExtension<TEnum> value)
         {
             view.SetValue(LangHostProperty, value);
         }
@@ -104,12 +104,12 @@ namespace LocalisationZero.MarkupExtensions
 
         private static void LookupPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            BaseLanguageExtension<TEnum> langHost = GetLangHost(bindable);
+            BaseLocalisationExtension<TEnum> langHost = GetLangHost(bindable);
             LocalisationPack lookup = GetLookup(bindable);
             UpdateText(langHost, lookup);
         }
 
-        private static void UpdateText(BaseLanguageExtension<TEnum> langHost, LocalisationPack lookup)
+        private static void UpdateText(BaseLocalisationExtension<TEnum> langHost, LocalisationPack lookup)
         {
             if (lookup != null)
             {

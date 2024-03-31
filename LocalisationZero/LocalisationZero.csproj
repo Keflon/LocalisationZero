@@ -16,6 +16,11 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<Title>LocalisationZero</Title>
+		<Version>1.0.0-pre0</Version>
+		<Authors>Function Zero Ltd.</Authors>
+		<Company>Function Zero Ltd.</Company>
+		<Description>A preview localisation package that allows automatic runtime decisions and updates based on parameters provided to each translation.</Description>
 	</PropertyGroup>
 
 	<ItemGroup>
